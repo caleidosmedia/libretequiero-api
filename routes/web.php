@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('animales', 'AnimalsController@index');
 Route::get('animales/{id}', 'AnimalsController@show');
+Route::get('animales-imagenes', 'AnimalsController@images');
 
 Auth::routes();
 

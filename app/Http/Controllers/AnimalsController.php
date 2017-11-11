@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class AnimalsController extends Controller
 {
     public function index() {
-        return Animal::all();
+        return Animal::where([
+            'kingdom' => 'ANIMALIA',
+            'category' => 'CR',
+            'category' => 'EN',
+            'category' => 'VU',
+        ])->get();
     }
 
     public function show($id) {
@@ -19,6 +24,9 @@ class AnimalsController extends Controller
     public function images() {
         $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
+            'category' => 'CR',
+            'category' => 'EN',
+            'category' => 'VU',
         ])->get();
 
         return view('animals.images', compact('animals'));
