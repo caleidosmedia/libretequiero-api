@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('animales', 'AnimalsController@index');
+Route::get('animales/{id}', 'AnimalsController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
