@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', 'Api\AuthController@login');
+
+Route::group(['middleware' => ['jwt.auth']], function () {
+	Route::get('denuncias', 'Api\DenunciasController@index');
+    Route::post('logout', 'Api\AuthController@logout');
 });
