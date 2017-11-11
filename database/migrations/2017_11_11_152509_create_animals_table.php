@@ -24,14 +24,12 @@ class CreateAnimalsTable extends Migration
             $table->string('order')->nullable();
             $table->string('family')->nullable();
             $table->string('genus')->nullable();
-            $table->string('authority')->nullable();
             $table->integer('published_year')->nullable();
             $table->boolean('marine_system')->nullable();
             $table->boolean('freshwater_system')->nullable();
             $table->boolean('terrestrial_system')->nullable();
             $table->integer('depth_upper')->nullable();
             $table->integer('depth_lower')->nullable();
-            $table->timestamps();
         });
     }
 
