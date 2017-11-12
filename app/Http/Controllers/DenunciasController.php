@@ -23,15 +23,24 @@ class DenunciasController extends Controller
                   case "Que clase":
                       $respond = "clase";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
+                      /*$dataResponse['facebook']['text'] = 'A que clase pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       foreach (Clase::all() as $value) {
                         $opcion = array();
                         $opcion['content_type'] = 'text';
                         $opcion['title'] = $value->clave;
-                        $opcion['image_url'] = "https://sites.google.com/site/losanimalesdecanarias/_/rsrc/1472857265130/home/otono/mamiferos.jpg";
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }*/
+                      $dataResponse['facebook']['attachment'] = array();
+                      $dataResponse['facebook']['attachment']['type'] = 'template';
+                      $dataResponse['facebook']['attachment']['payload'] = array();
+                      $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                      $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                      foreach (Clase::all() as $value) {
+                        $opcion = array();
+                        $opcion['image_url'] = 'https://sites.google.com/site/losanimalesdecanarias/_/rsrc/1472857265130/home/otono/mamiferos.jpg';
+                        $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
                       break;
                   case "Que grupo":
