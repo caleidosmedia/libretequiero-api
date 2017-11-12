@@ -95,6 +95,7 @@ class DenunciasController extends Controller
             $datos['source'] = 'caleidos';
             $datos['data'] = $dataResponse;
         } catch (\Exception $e) {
+            Log::info($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
         return response()->json($datos);
