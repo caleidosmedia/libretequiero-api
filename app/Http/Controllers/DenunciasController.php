@@ -75,7 +75,7 @@ class DenunciasController extends Controller
                  ->get();
                  $respuesta = '';
                  foreach ($animals as $value) {
-                    $respuesta.=$value->common_name
+                    $respuesta.=$value->common_name;
                  }
                  if(empty($respuesta))
                     $respuesta = 'Ninguno';
