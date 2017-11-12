@@ -12,6 +12,7 @@ class WSCAnimalsTableSeeder extends Seeder
      */
     public function run()
     {
+        // Loros grandes y guacamayos
         $bird = Animal::where('scientific_name', 'Amazona amazonica')->first();
         $bird->color = 'principalmente-verde';
         $bird->grupo = 'loros-grandes-y-guacamayos';
@@ -53,6 +54,129 @@ class WSCAnimalsTableSeeder extends Seeder
         $bird->grupo = 'loros-grandes-y-guacamayos';
         $bird->common_name = 'Guacamayo escarlata, guacamayo rojo ';
         $bird->save();
+
+        // Loros medianos y pequeños
+
+        $bird = Animal::where('scientific_name', 'Pionus menstruus')->first();
+        $bird->color = 'azul';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Loro cabeza azul';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Aratinga weddellii')->first();
+        $bird->color = 'principalmente-verde';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Loro cabeza gris, loro cabeza negra, cotorra de cabeza oscura, “Pedrito”';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Brotogeris versicolurus')->first();
+        $bird->color = 'principalmente-verde';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Pihuicho ala amarilla, pihuicho ala blanca';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Brotogeris cyanoptera')->first();
+        $bird->color = 'principalmente-verde';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Pihuicho ala azul';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Brotogeris sanctithomae')->first();
+        $bird->color = 'principalmente-verde';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Pihuicho frente amarilla, perico tui';
+        $bird->save();
+
+        // Rapaces
+
+        $bird = Animal::where('scientific_name', 'Parabuteo unicinctus')->first();
+        $bird->color = 'cafe-oscuro';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Gavilán acanelado';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Falco peregrinus')->first();
+        $bird->color = 'claro';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Halcón peregrino';
+        $bird->save();
+
+        $bird = Animal::where('scientific_name', 'Falco femoralis')->first();
+        $bird->color = 'claro';
+        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->common_name = 'Halcón perdiguero, halcón aplomado';
+        $bird->save();
+
+        //MAMIFEROS
+
+        // Perezosos
+        $mammal = Animal::where('scientific_name', 'Bradypus variegatus')->first();
+        $mammal->grupo = 'perezosos';
+        $mammal->common_name = 'Perezoso de tres dedos, pelejo';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Choloepus hoffmanni')->first();
+        $mammal->grupo = 'perezosos';
+        $mammal->common_name = 'Perezoso de dos dedos';
+        $mammal->save();
+
+        // Primates grandes y medianos
+        $mammal = Animal::where('scientific_name', 'Ateles chamek')->first();
+        $mammal->grupo = 'primtes-grandes-y-medianos';
+        $mammal->common_name = 'Maquisapa, mono araña';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Ateles belzebuth')->first();
+        $mammal->grupo = 'primtes-grandes-y-medianos';
+        $mammal->common_name = 'Mono maquisapa de vientre amarillo o blanco';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Sapajus macrocephalus')->first();
+        $mammal->grupo = 'primtes-grandes-y-medianos';
+        $mammal->common_name = 'Mono machín negro';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Cebus albifrons')->first();
+        $mammal->grupo = 'primtes-grandes-y-medianos';
+        $mammal->common_name = 'Capuchino de frente blanca';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Lagothrix lagotricha')->first();
+        $mammal->grupo = 'primtes-grandes-y-medianos';
+        $mammal->common_name = 'Mono choro común, mono lanudo común';
+        $mammal->save();
+
+        // Primates pequeños
+        $mammal = Animal::where('scientific_name', 'Aotus nigriceps')->first();
+        $mammal->grupo = 'primates-pequenos';
+        $mammal->common_name = 'Musmuqui, mono nocturno';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Saguinus mystax')->first();
+        $mammal->grupo = 'primates-pequenos';
+        $mammal->common_name = 'Mono tití bigotudo de pecho negro, mono pichico de bigote blanco';
+        $mammal->save();
+
+        // Felinos menores
+        $mammal = Animal::where('scientific_name', 'Leopardus wiedii')->first();
+        $mammal->grupo = 'felinos-menores';
+        $mammal->common_name = 'Margay, Gato Montés';
+        $mammal->save();
+
+        $mammal = Animal::where('scientific_name', 'Leopardus pardalis')->first();
+        $mammal->grupo = 'felinos-menores';
+        $mammal->common_name = 'Tigrillo, ocelote';
+        $mammal->save();
+
+        //coaties
+        $mammal = Animal::where('scientific_name', 'Nasua nasua')->first();
+        $mammal->grupo = 'coaties';
+        $mammal->common_name = 'Achuni, coatí de cola anillada ';
+        $mammal->save();
+
+        //REPTILES
+
+      
 
     }
 }
