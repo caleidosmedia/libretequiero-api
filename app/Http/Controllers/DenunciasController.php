@@ -53,9 +53,9 @@ class DenunciasController extends Controller
                   case "Que grupo":
                       $respond = "grupo";
                       $dataResponse['facebook'] = array();
+                      $clase = $data["result"]["parameters"]["clase"][0];
                       /*$dataResponse['facebook']['text'] = 'A que grupo pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
-                      $clase = $data["result"]["parameters"]["clase"][0];
                       foreach (Grupo::where('clase',$clase)->get() as $value) {
                         $opcion = array();
                         $opcion['content_type'] = 'text';
