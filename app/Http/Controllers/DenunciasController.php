@@ -191,7 +191,7 @@ class DenunciasController extends Controller
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
                       }
                       break;
-                  case "Que tipo":
+                  /*case "Que tipo":
                       $respond = "tipo";
                       $dataResponse['facebook'] = array();
                       $dataResponse['facebook']['text'] = 'Tipo de lugar?';
@@ -238,7 +238,7 @@ class DenunciasController extends Controller
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
                       }
-                      break;
+                      break;*/
                   default:
                       $respond = $data["result"]["fulfillment"]["speech"];
               }
