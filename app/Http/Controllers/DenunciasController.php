@@ -180,6 +180,7 @@ class DenunciasController extends Controller
                           $opcion['title'] = $value->clave;
                           $opcion['payload'] = $value->valor;
                           $dataResponse['facebook']['quick_replies'][] = $opcion;
+                        }
                       } else {
                         $respond = "donde";
                         $dataResponse['facebook'] = array();
