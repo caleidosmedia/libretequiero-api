@@ -44,7 +44,7 @@ class DenunciasController extends Controller
                         $opcion['buttons'] = array();
                         $boton = array();
                         $boton['type'] = 'postback';
-                        $boton['title'] = $value->clave;
+                        $boton['title'] = 'Seleccionar';
                         $boton['payload'] = $value->valor;
                         $opcion['buttons'][] = $boton;
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
@@ -75,7 +75,7 @@ class DenunciasController extends Controller
                         $opcion['buttons'] = array();
                         $boton = array();
                         $boton['type'] = 'postback';
-                        $boton['title'] = $value->clave;
+                        $boton['title'] = 'Seleccionar';
                         $boton['payload'] = $value->valor;
                         $opcion['buttons'][] = $boton;
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
