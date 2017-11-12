@@ -29,6 +29,7 @@ class DenunciasController extends Controller
                         $opcion = array();
                         $opcion['content_type'] = 'text';
                         $opcion['title'] = $value->clave;
+                        $opcion['image_url'] = "https://sites.google.com/site/losanimalesdecanarias/_/rsrc/1472857265130/home/otono/mamiferos.jpg";
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
                       }
