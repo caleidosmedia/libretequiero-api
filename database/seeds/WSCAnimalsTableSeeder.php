@@ -91,19 +91,19 @@ class WSCAnimalsTableSeeder extends Seeder
 
         $bird = Animal::where('scientific_name', 'Parabuteo unicinctus')->first();
         $bird->color = 'cafe-oscuro';
-        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->grupo = 'rapaces';
         $bird->common_name = 'Gavilán acanelado';
         $bird->save();
 
         $bird = Animal::where('scientific_name', 'Falco peregrinus')->first();
         $bird->color = 'claro';
-        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->grupo = 'rapaces';
         $bird->common_name = 'Halcón peregrino';
         $bird->save();
 
         $bird = Animal::where('scientific_name', 'Falco femoralis')->first();
         $bird->color = 'claro';
-        $bird->grupo = 'loros-medianos-y-pequenos';
+        $bird->grupo = 'rapaces';
         $bird->common_name = 'Halcón perdiguero, halcón aplomado';
         $bird->save();
 
