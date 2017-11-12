@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Clase;
 use App\Grupo;
 use App\Color;
+use App\Animal;
 
 class DenunciasController extends Controller
 {
@@ -65,20 +66,20 @@ class DenunciasController extends Controller
             }
               if($data["result"]["actionIncomplete"] != 1)
               {
-                 //$parametros = $data["result"]["parameters"];
-                 $parametros = $data["result"]["contexts"][4]["parameters"];
-                 User::create([
-                     'name' => $parametros['name'],
-                     'email' => $parametros['email'],
-                     'password' => bcrypt($parametros['password']),
-                     'lastname' => $parametros['lastname'],
-                     'dni' => $parametros['dni'],
-                     'name_apoderado' => $parametros['name_apoderado'],
-                     'lastname_apoderado' => $parametros['lastname_apoderado'],
-                     'dni_apoderado' => $parametros['dni_apoderado'],
-                     'discapacidad' => strtolower($parametros['discapacidad'])
-                 ]);
-                 $respond = 'Listo! Su inscripcion se realizo con exito, recuerde que el circuito comienza el 15 de enero. Puede ingresar a http://52.168.151.74 para ver el nuevo perfil de deportista. Usuario: '.$parametros['email'].' Clave: '.$parametros['password'].'. Gracias';
+                 $clase = $data["result"]["parameters"]["clase"][0];
+                 $grupo = $data["result"]["parameters"]["grupo"][0];
+                 $color = $data["result"]["parameters"]["color"][0];
+                 $animals = Animal::where('clase',$clase)
+                 ->where('grupo',$grupo)
+                 ->where('color',$color)
+                 ->get();
+                 $respuesta = '';
+                 foreach ($animals as $value) {
+                    $respuesta.=$value->common_name
+                 }
+                 if(empty($respuesta))
+                    $respuesta = 'Ninguno';
+                 $respond = 'Animales encontrados: '.$respuesta;
               }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
