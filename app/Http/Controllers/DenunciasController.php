@@ -104,6 +104,7 @@ class DenunciasController extends Controller
             $datos['speech'] = $respond;
             $datos['source'] = 'caleidos';
             $datos['data'] = $dataResponse;
+            Log::info(print_r($datos,true));
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
