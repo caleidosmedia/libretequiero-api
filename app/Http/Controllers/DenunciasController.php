@@ -166,11 +166,11 @@ class DenunciasController extends Controller
               } else {
               switch ($data["result"]["fulfillment"]["speech"]) {
                   case "Donde":
-                      /*if(isset($data["originalRequest"]["data"]["postback"]["payload"]) && $data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
+                      if(isset($data["originalRequest"]["data"]["postback"]["payload"]) && $data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
                       {
                         $latlng = $data["originalRequest"]["data"]["postback"]["data"];
                         $data["result"]["parameters"]["ubicacion"][0] = $latlng['lat'].','.$latlng['long'];
-                      } else {*/
+                      } else {
                         $respond = "donde";
                         $dataResponse['facebook'] = array();
                         $dataResponse['facebook']['text'] = 'Por favor comparta su ubicacion';
@@ -178,7 +178,7 @@ class DenunciasController extends Controller
                         $opcion = array();
                         $opcion['content_type'] = 'location';
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
-                      //}
+                      }
                       break;
                   case "Que tipo":
                       $respond = "tipo";
