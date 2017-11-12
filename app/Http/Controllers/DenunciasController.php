@@ -120,12 +120,12 @@ class DenunciasController extends Controller
                       $opcion = array();
                       $opcion['title'] = $value->common_name;
                       $opcion['image_url'] = $value->image_url;
-                      /*$opcion['buttons'] = array();
+                      $opcion['buttons'] = array();
                       $boton = array();
-                      $boton['type'] = 'postback';
-                      $boton['title'] = 'Seleccionar';
-                      $boton['payload'] = $value->valor;
-                      $opcion['buttons'][] = $boton;*/
+                      $boton['type'] = 'web_url';
+                      $boton['title'] = 'Saber mas';
+                      $boton['url'] = 'https://es.wikipedia.org/wiki/'.$value->scientific_name;
+                      $opcion['buttons'][] = $boton;
                       $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                     }
                  }
