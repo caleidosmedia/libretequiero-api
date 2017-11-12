@@ -23,7 +23,7 @@ class DenunciasController extends Controller
                   case "Que clase":
                       $respond = "clase";
                       $dataResponse['facebook'] = array();
-                      /*$dataResponse['facebook']['text'] = 'A que clase pertenece?';
+                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       foreach (Clase::all() as $value) {
                         $opcion = array();
@@ -31,8 +31,8 @@ class DenunciasController extends Controller
                         $opcion['title'] = $value->clave;
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
-                      }*/
-                      $dataResponse['facebook']['attachment'] = array();
+                      }
+                      /*$dataResponse['facebook']['attachment'] = array();
                       $dataResponse['facebook']['attachment']['type'] = 'template';
                       $dataResponse['facebook']['attachment']['payload'] = array();
                       $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
@@ -41,7 +41,7 @@ class DenunciasController extends Controller
                         $opcion = array();
                         $opcion['image_url'] = 'http://caleidosmedia.com/chatbots/img/Elcirculo-detalle.jpg';
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
-                      }
+                      }*/
                       break;
                   case "Que grupo":
                       $respond = "grupo";
@@ -104,11 +104,12 @@ class DenunciasController extends Controller
             $datos['speech'] = $respond;
             $datos['source'] = 'caleidos';
             $datos['data'] = $dataResponse;
-            Log::info(print_r($datos,true));
+            $resu = json_encode($datos);
+            Log::info($resu);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        return response()->json($datos);
+        return $resu;
     }
 }
