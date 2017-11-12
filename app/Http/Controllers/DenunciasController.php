@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Denuncia;
 use Illuminate\Support\Facades\Log;
+use App\Clase;
 
 class DenunciasController extends Controller
 {
@@ -19,7 +20,16 @@ class DenunciasController extends Controller
                   case "Que clase":
                       $respond = "clase";
                       $dataResponse['facebook'] = array();
-                      $lorem = array();
+                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      foreach (Clase::all() as $value) {
+                        $opcion = array();
+                        $opcion['content_type'] = 'text';
+                        $opcion['title'] = $value->clave;
+                        $opcion['payload'] = $value->valor;
+                        $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }
+                      /*$lorem = array();
                       $lorem['content_type'] = 'text';
                       $lorem['title'] = 'Anfibio';
                       $lorem['payload'] = 'AMPHIBIA';
@@ -35,12 +45,11 @@ class DenunciasController extends Controller
                       $doloresa['content_type'] = 'text';
                       $doloresa['title'] = 'Reptil';
                       $doloresa['payload'] = 'REPTILIA';
-                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
-                      $dataResponse['facebook']['quick_replies'] = array();
-                      $dataResponse['facebook']['quick_replies'][] = $lorem;
+
+
                       $dataResponse['facebook']['quick_replies'][] = $ipsum;
                       $dataResponse['facebook']['quick_replies'][] = $dolores;                      
-                      $dataResponse['facebook']['quick_replies'][] = $doloresa;
+                      $dataResponse['facebook']['quick_replies'][] = $doloresa;*/
                       break;
                   default:
                       $respond = $data["result"]["fulfillment"]["speech"];
