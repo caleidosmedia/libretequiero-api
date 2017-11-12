@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Clase;
 use Illuminate\Database\Seeder;
 
 class ClasesTableSeeder extends Seeder
