@@ -199,7 +199,7 @@ class DenunciasController extends Controller
                         $boton = array();
                         $boton['type'] = 'postback';
                         $boton['title'] = 'Seleccionar';
-                        $boton['payload'] = $value->clave;
+                        $boton['payload'] = $value->valor;
                         $opcion['buttons'][] = $boton;
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
