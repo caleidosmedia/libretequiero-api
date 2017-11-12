@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class AnimalsController extends Controller
 {
-    public function index() {
-        return Animal::where([
+    public function index(Request $request) {
+        $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
-            'category' => 'CR',
-            'category' => 'EN',
-            'category' => 'VU',
-        ])->get();
+        ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA','REPTILIA'])
+        ->orderBy('category')
+        ->orderBy('image_url','desc');
+
+        if(!empty($request->paginate) && $request->paginate == 'false') {
+            return $animals->get();
+        }
+        else {
+            return $animals->paginate(5);
+        }
     }
 
     public function show($id) {

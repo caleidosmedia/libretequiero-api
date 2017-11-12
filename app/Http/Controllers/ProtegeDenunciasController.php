@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProtegeDenunciasController extends Controller
 {
+    public function index() {
+        $denuncias = Denuncia::all();
+        return view('denuncias.index', compact('denuncias'));
+    }
+
     public function store(Request $request) {
         try {
             $denuncia = Denuncia::create($request->all());
