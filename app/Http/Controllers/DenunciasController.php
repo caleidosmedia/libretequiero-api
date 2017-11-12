@@ -166,12 +166,22 @@ class DenunciasController extends Controller
               } else {
               switch ($data["result"]["fulfillment"]["speech"]) {
                   case "Donde":
-                      $respond = "donde";
                       if(isset($data["originalRequest"]["data"]["postback"]["payload"]) && $data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
                       {
                         $latlng = $data["originalRequest"]["data"]["postback"]["data"];
                         $data["result"]["parameters"]["ubicacion"][0] = $latlng['lat'].','.$latlng['long'];
+                        $respond = "tipo";
+                        $dataResponse['facebook'] = array();
+                        $dataResponse['facebook']['text'] = 'Tipo de lugar?';
+                        $dataResponse['facebook']['quick_replies'] = array();
+                        foreach (Color::all() as $value) {
+                          $opcion = array();
+                          $opcion['content_type'] = 'text';
+                          $opcion['title'] = $value->clave;
+                          $opcion['payload'] = $value->valor;
+                          $dataResponse['facebook']['quick_replies'][] = $opcion;
                       } else {
+                        $respond = "donde";
                         $dataResponse['facebook'] = array();
                         $dataResponse['facebook']['text'] = 'Por favor comparta su ubicacion';
                         $dataResponse['facebook']['quick_replies'] = array();
