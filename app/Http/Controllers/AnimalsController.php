@@ -43,6 +43,10 @@ class AnimalsController extends Controller
             $animals->where('color', $request->color);
         }
 
+        if(!empty($request->color_secundario)) {
+            $animals->where('color_secundario', $request->color_secundario);
+        }
+
         return $animals->get();
     }
 
