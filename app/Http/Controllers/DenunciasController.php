@@ -19,6 +19,38 @@ class DenunciasController extends Controller
             Log::info(print_r($data,true));
           $dataResponse = array();
            if($data["result"]["metadata"]["intentName"] == "Default Welcome Intent"){
+              if($data["result"]["actionIncomplete"] != 1)
+              {
+                 $clase = $data["result"]["parameters"]["clase"][0];
+                 $grupo = $data["result"]["parameters"]["grupo"][0];
+                 $color = $data["result"]["parameters"]["color"][0];
+                 $animals = Animal::where('class',$clase)
+                 ->where('grupo',$grupo)
+                 ->where('color',$color)
+                 ->get();
+                 $respond = 'Ningun animal encontrado';
+                 if(!$animals->isEmpty())
+                  {
+                    $dataResponse['facebook'] = array();
+                    $dataResponse['facebook']['attachment'] = array();
+                    $dataResponse['facebook']['attachment']['type'] = 'template';
+                    $dataResponse['facebook']['attachment']['payload'] = array();
+                    $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                    $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                    foreach ($animals as $value) {
+                      $opcion = array();
+                      $opcion['title'] = $value->common_name;
+                      $opcion['image_url'] = $value->image_url;
+                      $opcion['buttons'] = array();
+                      $boton = array();
+                      $boton['type'] = 'web_url';
+                      $boton['title'] = 'Saber mas';
+                      $boton['url'] = 'https://es.wikipedia.org/wiki/'.$value->scientific_name;
+                      $opcion['buttons'][] = $boton;
+                      $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
+                    }
+                 }
+              } else {
               switch ($data["result"]["fulfillment"]["speech"]) {
                   case "Que clase":
                       $respond = "clase";
@@ -98,38 +130,7 @@ class DenunciasController extends Controller
                       $respond = $data["result"]["fulfillment"]["speech"];
               }
             }
-              if($data["result"]["actionIncomplete"] != 1)
-              {
-                 $clase = $data["result"]["parameters"]["clase"][0];
-                 $grupo = $data["result"]["parameters"]["grupo"][0];
-                 $color = $data["result"]["parameters"]["color"][0];
-                 $animals = Animal::where('class',$clase)
-                 ->where('grupo',$grupo)
-                 ->where('color',$color)
-                 ->get();
-                 $respond = 'Ningun animal encontrado';
-                 if(!$animals->isEmpty())
-                  {
-                    $dataResponse['facebook'] = array();
-                    $dataResponse['facebook']['attachment'] = array();
-                    $dataResponse['facebook']['attachment']['type'] = 'template';
-                    $dataResponse['facebook']['attachment']['payload'] = array();
-                    $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
-                    $dataResponse['facebook']['attachment']['payload']['elements'] = array();
-                    foreach ($animals as $value) {
-                      $opcion = array();
-                      $opcion['title'] = $value->common_name;
-                      $opcion['image_url'] = $value->image_url;
-                      $opcion['buttons'] = array();
-                      $boton = array();
-                      $boton['type'] = 'web_url';
-                      $boton['title'] = 'Saber mas';
-                      $boton['url'] = 'https://es.wikipedia.org/wiki/'.$value->scientific_name;
-                      $opcion['buttons'][] = $boton;
-                      $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
-                    }
-                 }
-              }
+            }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
                 $tokens = User::where('type_document', 2)->pluck('device')->toArray();
