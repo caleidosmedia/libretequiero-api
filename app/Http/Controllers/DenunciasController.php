@@ -43,9 +43,9 @@ class DenunciasController extends Controller
                         $opcion['image_url'] = 'http://clientes.caleidosmedia.com/dejaloslibres-api/public/img/'.$value->clave.'.png';
                         $opcion['buttons'] = array();
                         $boton = array();
-                        $boton['type'] = 'postback';
+                        /*$boton['type'] = 'postback';
                         $boton['title'] = $value->clave;
-                        $boton['payload'] = $value->valor;
+                        $boton['payload'] = $value->valor;*/
                         $opcion['buttons'][] = $boton;
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
