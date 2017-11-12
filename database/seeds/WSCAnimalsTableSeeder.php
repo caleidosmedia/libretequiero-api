@@ -168,15 +168,55 @@ class WSCAnimalsTableSeeder extends Seeder
         $mammal->common_name = 'Tigrillo, ocelote';
         $mammal->save();
 
-        //coaties
+        // Coaties
         $mammal = Animal::where('scientific_name', 'Nasua nasua')->first();
         $mammal->grupo = 'coaties';
         $mammal->common_name = 'Achuni, coatí de cola anillada ';
         $mammal->save();
 
-        //REPTILES
+        //REPTILES REPTILIA
+        // Serpientes
 
-      
+        // Iguanas
+
+        //Caimanes
+        $reptile = Animal::where('scientific_name', 'Caiman crocodilus')->first();
+        $reptile->grupo = 'caimanes';
+        $reptile->common_name = 'Caimán blanco, caimán de anteojos, lagarto blanco';
+        $reptile->save();
+
+        $reptile = Animal::where('scientific_name', 'Melanosuchus niger')->first();
+        $reptile->grupo = 'caimanes';
+        $reptile->common_name = 'Caimán negro';
+        $reptile->save();
+
+        // Tortugas terrestres
+        $reptile = Animal::where('scientific_name', 'Chelonoidis denticulata')->first();
+        $reptile->grupo = 'tortugas-terrestres';
+        $reptile->common_name = 'Motelo de patas amarillas';
+        $reptile->save();
+
+        //Tortugas de río
+        $reptile = Animal::where('scientific_name', 'Podocnemis expansa')->first();
+        $reptile->grupo = 'tortugas-de-rio';
+        $reptile->common_name = 'Charapa';
+        $reptile->save();
+
+        $reptile = Animal::where('scientific_name', 'Podocnemis unifilis')->first();
+        $reptile->grupo = 'tortugas-de-rio';
+        $reptile->common_name = 'Taricaya';
+        $reptile->save();
+        
+        $reptile = Animal::where('scientific_name', 'Podocnemis unifilis')->first();
+        $reptile->grupo = 'tortugas-de-rio';
+        $reptile->common_name = 'Taricaya';
+        $reptile->save();
+
+        // AMPHIBIA
+        $amphibia = Animal::where('scientific_name', 'Podocnemis unifilis')->first();
+        $amphibia->grupo = 'ranas';
+        $amphibia->common_name = 'Rana del Titicaca';
+        $amphibia->save();
 
     }
 }
