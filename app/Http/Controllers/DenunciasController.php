@@ -18,7 +18,7 @@ class DenunciasController extends Controller
             $data = $request->all();
             Log::info(print_r($data,true));
           $dataResponse = array();
-           if($data["result"]["metadata"]["intentName"] == "Default Welcome Intent"){
+           if($data["result"]["metadata"]["intentName"] == "conoce"){
               if($data["result"]["actionIncomplete"] != 1)
               {
                  $clase = $data["result"]["parameters"]["clase"][0];
