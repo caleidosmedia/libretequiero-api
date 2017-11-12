@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Denuncia;
 use Illuminate\Support\Facades\Log;
 use App\Clase;
+use App\Grupo;
 
 class DenunciasController extends Controller
 {
@@ -23,6 +24,20 @@ class DenunciasController extends Controller
                       $dataResponse['facebook']['text'] = 'A que clase pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       foreach (Clase::all() as $value) {
+                        $opcion = array();
+                        $opcion['content_type'] = 'text';
+                        $opcion['title'] = $value->clave;
+                        $opcion['payload'] = $value->valor;
+                        $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }
+                      break;
+                  case "Que grupo":
+                      $respond = "grupo";
+                      $dataResponse['facebook'] = array();
+                      $dataResponse['facebook']['text'] = 'A que grupo pertenece?';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      $clase = $data["result"]["parameters"]["clase"][0];
+                      foreach (Grupo::where('clase',$clase)->get() as $value) {
                         $opcion = array();
                         $opcion['content_type'] = 'text';
                         $opcion['title'] = $value->clave;
