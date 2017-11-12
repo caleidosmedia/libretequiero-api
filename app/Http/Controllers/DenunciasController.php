@@ -53,7 +53,7 @@ class DenunciasController extends Controller
                   case "Que grupo":
                       $respond = "grupo";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'A que grupo pertenece?';
+                      /*$dataResponse['facebook']['text'] = 'A que grupo pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       $clase = $data["result"]["parameters"]["clase"][0];
                       foreach (Grupo::where('clase',$clase)->get() as $value) {
@@ -62,6 +62,23 @@ class DenunciasController extends Controller
                         $opcion['title'] = $value->clave;
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }*/
+                      $dataResponse['facebook']['attachment'] = array();
+                      $dataResponse['facebook']['attachment']['type'] = 'template';
+                      $dataResponse['facebook']['attachment']['payload'] = array();
+                      $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                      $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                      foreach (Grupo::where('clase',$clase)->get() as $value) {
+                        $opcion = array();
+                        $opcion['title'] = $value->clave;
+                        $opcion['image_url'] = 'http://clientes.caleidosmedia.com/dejaloslibres-api/public/img/'.$value->valor.'.png';
+                        $opcion['buttons'] = array();
+                        $boton = array();
+                        $boton['type'] = 'postback';
+                        $boton['title'] = $value->clave;
+                        $boton['payload'] = $value->valor;
+                        $opcion['buttons'][] = $boton;
+                        $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
                       break;
                   case "Que color":
