@@ -131,7 +131,7 @@ class DenunciasController extends Controller
               }
             }
             }
-            if($data["result"]["metadata"]["intentName"] == "Denuncia"){
+            if($data["result"]["metadata"]["intentName"] == "denuncia"){
               $respond = 'Renzo';
             }
             /*$denuncia = Denuncia::create($atributos);
