@@ -29,27 +29,6 @@ class DenunciasController extends Controller
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
                       }
-                      /*$lorem = array();
-                      $lorem['content_type'] = 'text';
-                      $lorem['title'] = 'Anfibio';
-                      $lorem['payload'] = 'AMPHIBIA';
-                      $ipsum = array();
-                      $ipsum['content_type'] = 'text';
-                      $ipsum['title'] = 'Ave';
-                      $ipsum['payload'] = 'AVES';
-                      $dolores = array();
-                      $dolores['content_type'] = 'text';
-                      $dolores['title'] = 'Mamifero';
-                      $dolores['payload'] = 'MAMMALIA';
-                      $doloresa = array();
-                      $doloresa['content_type'] = 'text';
-                      $doloresa['title'] = 'Reptil';
-                      $doloresa['payload'] = 'REPTILIA';
-
-
-                      $dataResponse['facebook']['quick_replies'][] = $ipsum;
-                      $dataResponse['facebook']['quick_replies'][] = $dolores;                      
-                      $dataResponse['facebook']['quick_replies'][] = $doloresa;*/
                       break;
                   default:
                       $respond = $data["result"]["fulfillment"]["speech"];
