@@ -274,7 +274,7 @@ class DenunciasController extends Controller
                       $dataResponse['facebook']['quick_replies'][] = $opcion;
                       $opcion = array();
                       $opcion['content_type'] = 'text';
-                      $opcion['title'] = 'Bolsas'
+                      $opcion['title'] = 'Bolsas';
                       $opcion['payload'] = 'Bolsas';
                       $dataResponse['facebook']['quick_replies'][] = $opcion;
                       $opcion = array();
