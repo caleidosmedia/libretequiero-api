@@ -21,21 +21,26 @@ class DenunciasController extends Controller
                       $dataResponse['facebook'] = array();
                       $lorem = array();
                       $lorem['content_type'] = 'text';
-                      $lorem['title'] = 'lorem';
-                      $lorem['payload'] = 'lorem';
+                      $lorem['title'] = 'ANFIBIO';
+                      $lorem['payload'] = 'AMPHIBIA';
                       $ipsum = array();
                       $ipsum['content_type'] = 'text';
-                      $ipsum['title'] = 'ipsum';
-                      $ipsum['payload'] = 'ipsum';
+                      $ipsum['title'] = 'AVE';
+                      $ipsum['payload'] = 'AVES';
                       $dolores = array();
                       $dolores['content_type'] = 'text';
-                      $dolores['title'] = 'dolores';
-                      $dolores['payload'] = 'dolores';
+                      $dolores['title'] = 'MAMIFERO';
+                      $dolores['payload'] = 'MAMMALIA';
+                      $doloresa = array();
+                      $doloresa['content_type'] = 'text';
+                      $doloresa['title'] = 'REPTIL';
+                      $doloresa['payload'] = 'REPTILIA';
                       $dataResponse['facebook']['text'] = 'A que grupo pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       $dataResponse['facebook']['quick_replies'][] = $lorem;
                       $dataResponse['facebook']['quick_replies'][] = $ipsum;
-                      $dataResponse['facebook']['quick_replies'][] = $dolores;
+                      $dataResponse['facebook']['quick_replies'][] = $dolores;                      
+                      $dataResponse['facebook']['quick_replies'][] = $doloresa;
                       break;
                   default:
                       $respond = $data["result"]["fulfillment"]["speech"];
@@ -71,12 +76,9 @@ class DenunciasController extends Controller
             $datos['speech'] = $respond;
             $datos['source'] = 'caleidos';
             $datos['data'] = $dataResponse;
-            Log::info(print_r($datos,true));
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        //$data = $denuncia;
         return response()->json($datos);
-        //return json_encode($datos);
     }
 }
