@@ -69,7 +69,7 @@ class DenunciasController extends Controller
                  $clase = $data["result"]["parameters"]["clase"][0];
                  $grupo = $data["result"]["parameters"]["grupo"][0];
                  $color = $data["result"]["parameters"]["color"][0];
-                 $animals = Animal::where('clase',$clase)
+                 $animals = Animal::where('class',$clase)
                  ->where('grupo',$grupo)
                  ->where('color',$color)
                  ->get();
