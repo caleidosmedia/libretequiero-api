@@ -16,8 +16,8 @@ class DenunciasController extends Controller
           $dataResponse = array();
            if($data["result"]["metadata"]["intentName"] == "Default Welcome Intent"){
               switch ($data["result"]["fulfillment"]["speech"]) {
-                  case "Que grupo":
-                      $respond = "grupo";
+                  case "Que clase":
+                      $respond = "clase";
                       $dataResponse['facebook'] = array();
                       $lorem = array();
                       $lorem['content_type'] = 'text';
@@ -35,7 +35,7 @@ class DenunciasController extends Controller
                       $doloresa['content_type'] = 'text';
                       $doloresa['title'] = 'Reptil';
                       $doloresa['payload'] = 'REPTILIA';
-                      $dataResponse['facebook']['text'] = 'A que grupo pertenece?';
+                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       $dataResponse['facebook']['quick_replies'][] = $lorem;
                       $dataResponse['facebook']['quick_replies'][] = $ipsum;
