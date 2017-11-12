@@ -132,7 +132,100 @@ class DenunciasController extends Controller
             }
             }
             if($data["result"]["metadata"]["intentName"] == "denuncia"){
-              $respond = 'Renzo';
+              if($data["result"]["actionIncomplete"] != 1)
+              {
+                 $clase = $data["result"]["parameters"]["clase"][0];
+                 $grupo = $data["result"]["parameters"]["grupo"][0];
+                 $color = $data["result"]["parameters"]["color"][0];
+                 $animals = Animal::where('class',$clase)
+                 ->where('grupo',$grupo)
+                 ->where('color',$color)
+                 ->get();
+                 $respond = 'Ningun animal encontrado';
+                 if(!$animals->isEmpty())
+                  {
+                    $dataResponse['facebook'] = array();
+                    $dataResponse['facebook']['attachment'] = array();
+                    $dataResponse['facebook']['attachment']['type'] = 'template';
+                    $dataResponse['facebook']['attachment']['payload'] = array();
+                    $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                    $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                    foreach ($animals as $value) {
+                      $opcion = array();
+                      $opcion['title'] = $value->common_name;
+                      $opcion['image_url'] = $value->image_url;
+                      $opcion['buttons'] = array();
+                      $boton = array();
+                      $boton['type'] = 'web_url';
+                      $boton['title'] = 'Saber mas';
+                      $boton['url'] = 'https://es.wikipedia.org/wiki/'.$value->scientific_name;
+                      $opcion['buttons'][] = $boton;
+                      $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
+                    }
+                 }
+              } else {
+              switch ($data["result"]["fulfillment"]["speech"]) {
+                  case "Donde":
+                      $respond = "donde";
+                      $dataResponse['facebook'] = array();
+                      $dataResponse['facebook']['text'] = 'Por favor comparta su ubicacion';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      $opcion = array();
+                      $opcion['content_type'] = 'location';
+                      $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      break;
+                  case "Que tipo":
+                      $respond = "tipo";
+                      $dataResponse['facebook'] = array();
+                      $dataResponse['facebook']['text'] = 'Tipo de lugar?';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      foreach (Color::all() as $value) {
+                        $opcion = array();
+                        $opcion['content_type'] = 'text';
+                        $opcion['title'] = $value->clave;
+                        $opcion['payload'] = $value->valor;
+                        $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }
+                      break;
+                  case "Que grupo":
+                      $respond = "grupo";
+                      $dataResponse['facebook'] = array();
+                      $clase = $data["result"]["parameters"]["clase"][0];
+                      $dataResponse['facebook']['attachment'] = array();
+                      $dataResponse['facebook']['attachment']['type'] = 'template';
+                      $dataResponse['facebook']['attachment']['payload'] = array();
+                      $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                      $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                      foreach (Grupo::where('clase',$clase)->get() as $value) {
+                        $opcion = array();
+                        $opcion['title'] = $value->clave;
+                        $opcion['image_url'] = 'http://clientes.caleidosmedia.com/dejaloslibres-api/public/img/'.$value->valor.'.png';
+                        $opcion['buttons'] = array();
+                        $boton = array();
+                        $boton['type'] = 'postback';
+                        $boton['title'] = 'Seleccionar';
+                        $boton['payload'] = $value->valor;
+                        $opcion['buttons'][] = $boton;
+                        $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
+                      }
+                      break;
+                  case "Que color":
+                      $respond = "clase";
+                      $dataResponse['facebook'] = array();
+                      $dataResponse['facebook']['text'] = 'De que color es?';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      foreach (Color::all() as $value) {
+                        $opcion = array();
+                        $opcion['content_type'] = 'text';
+                        $opcion['title'] = $value->clave;
+                        $opcion['payload'] = $value->valor;
+                        $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }
+                      break;
+                  default:
+                      $respond = $data["result"]["fulfillment"]["speech"];
+              }
+            }
             }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
