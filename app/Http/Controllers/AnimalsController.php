@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Animal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AnimalsController extends Controller
 {
@@ -19,6 +20,24 @@ class AnimalsController extends Controller
     public function show($id) {
         $animal = Animal::findOrFail($id);
         return $animal;
+    }
+
+    public function search(Request $request) {
+        $animals = DB::table('animals');
+
+        if(!empty($request->taxonomia)) {
+            $animals->where('class', $request->taxonomia);
+        }
+
+        if(!empty($request->grupo)) {
+            $animals->where('grupo', $request->grupo);
+        }
+
+        if(!empty($request->color)) {
+            $animals->where('color', $request->color);
+        }
+
+        return $animals->get();
     }
 
     public function images() {
