@@ -7,6 +7,7 @@ use App\Denuncia;
 use Illuminate\Support\Facades\Log;
 use App\Clase;
 use App\Grupo;
+use App\Color;
 
 class DenunciasController extends Controller
 {
@@ -38,6 +39,19 @@ class DenunciasController extends Controller
                       $dataResponse['facebook']['quick_replies'] = array();
                       $clase = $data["result"]["parameters"]["clase"][0];
                       foreach (Grupo::where('clase',$clase)->get() as $value) {
+                        $opcion = array();
+                        $opcion['content_type'] = 'text';
+                        $opcion['title'] = $value->clave;
+                        $opcion['payload'] = $value->valor;
+                        $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }
+                      break;
+                  case "Que color":
+                      $respond = "clase";
+                      $dataResponse['facebook'] = array();
+                      $dataResponse['facebook']['text'] = 'De que color es?';
+                      $dataResponse['facebook']['quick_replies'] = array();
+                      foreach (Color::all() as $value) {
                         $opcion = array();
                         $opcion['content_type'] = 'text';
                         $opcion['title'] = $value->clave;
