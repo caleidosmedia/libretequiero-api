@@ -107,13 +107,28 @@ class DenunciasController extends Controller
                  ->where('grupo',$grupo)
                  ->where('color',$color)
                  ->get();
-                 $respuesta = '';
-                 foreach ($animals as $value) {
-                    $respuesta.=$value->common_name;
+                 $respond = 'Ningun animal encontrado';
+                 if(!$animals->isEmpty())
+                  {
+                    $dataResponse['facebook'] = array();
+                    $dataResponse['facebook']['attachment'] = array();
+                    $dataResponse['facebook']['attachment']['type'] = 'template';
+                    $dataResponse['facebook']['attachment']['payload'] = array();
+                    $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                    $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                    foreach ($animals as $value) {
+                      $opcion = array();
+                      $opcion['title'] = $value->common_name;
+                      $opcion['image_url'] = $value->image_url;
+                      /*$opcion['buttons'] = array();
+                      $boton = array();
+                      $boton['type'] = 'postback';
+                      $boton['title'] = 'Seleccionar';
+                      $boton['payload'] = $value->valor;
+                      $opcion['buttons'][] = $boton;*/
+                      $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
+                    }
                  }
-                 if(empty($respuesta))
-                    $respuesta = 'Ninguno';
-                 $respond = 'Animales encontrados: '.$respuesta;
               }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
