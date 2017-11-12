@@ -131,6 +131,9 @@ class DenunciasController extends Controller
               }
             }
             }
+            if($data["result"]["metadata"]["intentName"] == "Denuncia"){
+              $respond = 'Renzo';
+            }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
                 $tokens = User::where('type_document', 2)->pluck('device')->toArray();
