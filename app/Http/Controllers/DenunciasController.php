@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Clase;
 use App\Grupo;
 use App\Color;
+use App\Animal;
 
 class DenunciasController extends Controller
 {
@@ -22,7 +23,7 @@ class DenunciasController extends Controller
                   case "Que clase":
                       $respond = "clase";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'A que clase pertenece?';
+                      /*$dataResponse['facebook']['text'] = 'A que clase pertenece?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       foreach (Clase::all() as $value) {
                         $opcion = array();
@@ -30,6 +31,17 @@ class DenunciasController extends Controller
                         $opcion['title'] = $value->clave;
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      }*/
+                      $dataResponse['facebook']['attachment'] = array();
+                      $dataResponse['facebook']['attachment']['type'] = 'template';
+                      $dataResponse['facebook']['attachment']['payload'] = array();
+                      $dataResponse['facebook']['attachment']['payload']['template_type'] = 'generic';
+                      $dataResponse['facebook']['attachment']['payload']['elements'] = array();
+                      foreach (Clase::all() as $value) {
+                        $opcion = array();
+                        $opcion['title'] = $value->clave;
+                        $opcion['image_url'] = 'http://clientes.caleidosmedia.com/dejaloslibres-api/public/img/'.$value->clave.'.png';
+                        $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
                       break;
                   case "Que grupo":
@@ -65,20 +77,20 @@ class DenunciasController extends Controller
             }
               if($data["result"]["actionIncomplete"] != 1)
               {
-                 //$parametros = $data["result"]["parameters"];
-                 $parametros = $data["result"]["contexts"][4]["parameters"];
-                 User::create([
-                     'name' => $parametros['name'],
-                     'email' => $parametros['email'],
-                     'password' => bcrypt($parametros['password']),
-                     'lastname' => $parametros['lastname'],
-                     'dni' => $parametros['dni'],
-                     'name_apoderado' => $parametros['name_apoderado'],
-                     'lastname_apoderado' => $parametros['lastname_apoderado'],
-                     'dni_apoderado' => $parametros['dni_apoderado'],
-                     'discapacidad' => strtolower($parametros['discapacidad'])
-                 ]);
-                 $respond = 'Listo! Su inscripcion se realizo con exito, recuerde que el circuito comienza el 15 de enero. Puede ingresar a http://52.168.151.74 para ver el nuevo perfil de deportista. Usuario: '.$parametros['email'].' Clave: '.$parametros['password'].'. Gracias';
+                 $clase = $data["result"]["parameters"]["clase"][0];
+                 $grupo = $data["result"]["parameters"]["grupo"][0];
+                 $color = $data["result"]["parameters"]["color"][0];
+                 $animals = Animal::where('class',$clase)
+                 ->where('grupo',$grupo)
+                 ->where('color',$color)
+                 ->get();
+                 $respuesta = '';
+                 foreach ($animals as $value) {
+                    $respuesta.=$value->common_name;
+                 }
+                 if(empty($respuesta))
+                    $respuesta = 'Ninguno';
+                 $respond = 'Animales encontrados: '.$respuesta;
               }
             /*$denuncia = Denuncia::create($atributos);
             if ($denuncia) {
@@ -93,9 +105,12 @@ class DenunciasController extends Controller
             $datos['speech'] = $respond;
             $datos['source'] = 'caleidos';
             $datos['data'] = $dataResponse;
+            $resu = json_encode($datos);
+            Log::info($resu);
         } catch (\Exception $e) {
+            Log::info($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        return response()->json($datos);
+        return $resu;
     }
 }
