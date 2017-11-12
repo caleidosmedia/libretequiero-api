@@ -165,44 +165,26 @@ class DenunciasController extends Controller
                  }
               } else {
               switch ($data["result"]["fulfillment"]["speech"]) {
-                  case "Donde":
-                      if(isset($data["originalRequest"]["data"]["postback"]["payload"]) && $data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
-                      {
-                        $latlng = $data["originalRequest"]["data"]["postback"]["data"];
-                        $data["result"]["parameters"]["ubicacion"][0] = $latlng['lat'].','.$latlng['long'];
-                        $respond = "tipo";
-                        $dataResponse['facebook'] = array();
-                        $dataResponse['facebook']['text'] = 'Tipo de lugar?';
-                        $dataResponse['facebook']['quick_replies'] = array();
-                        foreach (Color::all() as $value) {
-                          $opcion = array();
-                          $opcion['content_type'] = 'text';
-                          $opcion['title'] = $value->clave;
-                          $opcion['payload'] = $value->valor;
-                          $dataResponse['facebook']['quick_replies'][] = $opcion;
-                        }
-                      } else {
-                        $respond = "donde";
-                        $dataResponse['facebook'] = array();
-                        $dataResponse['facebook']['text'] = 'Por favor comparta su ubicacion';
-                        $dataResponse['facebook']['quick_replies'] = array();
-                        $opcion = array();
-                        $opcion['content_type'] = 'location';
-                        $dataResponse['facebook']['quick_replies'][] = $opcion;
-                      }
-                      break;
-                  /*case "Que tipo":
+                  case "Que tipo":
                       $respond = "tipo";
                       $dataResponse['facebook'] = array();
                       $dataResponse['facebook']['text'] = 'Tipo de lugar?';
                       $dataResponse['facebook']['quick_replies'] = array();
-                      foreach (Color::all() as $value) {
-                        $opcion = array();
-                        $opcion['content_type'] = 'text';
-                        $opcion['title'] = $value->clave;
-                        $opcion['payload'] = $value->valor;
-                        $dataResponse['facebook']['quick_replies'][] = $opcion;
-                      }
+                      $opcion = array();
+                      $opcion['content_type'] = 'text';
+                      $opcion['title'] = 'Establecimiento Comercial';
+                      $opcion['payload'] = 'Establecimiento Comercial';
+                      $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      $opcion = array();
+                      $opcion['content_type'] = 'text';
+                      $opcion['title'] = 'Casa';
+                      $opcion['payload'] = 'Casa';
+                      $dataResponse['facebook']['quick_replies'][] = $opcion;
+                      $opcion = array();
+                      $opcion['content_type'] = 'text';
+                      $opcion['title'] = 'Otro';
+                      $opcion['payload'] = 'Otro';
+                      $dataResponse['facebook']['quick_replies'][] = $opcion;
                       break;
                   case "Que grupo":
                       $respond = "grupo";
@@ -238,7 +220,7 @@ class DenunciasController extends Controller
                         $opcion['payload'] = $value->valor;
                         $dataResponse['facebook']['quick_replies'][] = $opcion;
                       }
-                      break;*/
+                      break;
                   default:
                       $respond = $data["result"]["fulfillment"]["speech"];
               }
