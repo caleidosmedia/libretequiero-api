@@ -229,7 +229,7 @@ class DenunciasController extends Controller
                   case "Que estado":
                       $respond = "estado";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'Tipo de lugar?';
+                      $dataResponse['facebook']['text'] = 'Estado del animal?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       $opcion = array();
                       $opcion['content_type'] = 'text';
@@ -260,7 +260,7 @@ class DenunciasController extends Controller
                   case "Que almacenamiento":
                       $respond = "almacenamiento";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'Tipo de lugar?';
+                      $dataResponse['facebook']['text'] = 'En donde esta?';
                       $dataResponse['facebook']['quick_replies'] = array();
                       $opcion = array();
                       $opcion['content_type'] = 'text';
