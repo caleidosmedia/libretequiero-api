@@ -186,7 +186,7 @@ class DenunciasController extends Controller
                   case "Que clase":
                       $respond = "clase";
                       $dataResponse['facebook'] = array();
-                      $dataResponse['facebook']['text'] = 'Que clase de animal es?';
+                      //$dataResponse['facebook']['text'] = 'Que clase de animal es?';
                       $dataResponse['facebook']['attachment'] = array();
                       $dataResponse['facebook']['attachment']['type'] = 'template';
                       $dataResponse['facebook']['attachment']['payload'] = array();
