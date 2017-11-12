@@ -76,6 +76,7 @@ class DenunciasController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
         //$data = $denuncia;
-        return response()->json(compact('datos'));
+        return json_encode($datos);
+        //return response()->json(compact('datos'));
     }
 }
