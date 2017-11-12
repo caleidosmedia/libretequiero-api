@@ -40,7 +40,7 @@ class DenunciasController extends Controller
                       foreach (Clase::all() as $value) {
                         $opcion = array();
                         $opcion['title'] = $value->clave;
-                        $opcion['image_url'] = 'http://caleidosmedia.com/chatbots/img/Elcirculo-detalle.jpg';
+                        $opcion['image_url'] = 'http://clientes.caleidosmedia.com/dejaloslibres-api/public/img/'.$value->clave.'.png';
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
                       break;
