@@ -39,7 +39,7 @@ class DenunciasController extends Controller
                       $dataResponse['facebook']['attachment']['payload']['elements'] = array();
                       foreach (Clase::all() as $value) {
                         $opcion = array();
-                        $opcion['image_url'] = 'https://sites.google.com/site/losanimalesdecanarias/_/rsrc/1472857265130/home/otono/mamiferos.jpg';
+                        $opcion['image_url'] = 'http://caleidosmedia.com/chatbots/img/Elcirculo-detalle.jpg';
                         $dataResponse['facebook']['attachment']['payload']['elements'][] = $opcion;
                       }
                       break;
