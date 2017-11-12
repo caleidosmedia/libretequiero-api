@@ -166,7 +166,7 @@ class DenunciasController extends Controller
               } else {
               switch ($data["result"]["fulfillment"]["speech"]) {
                   case "Donde":
-                      if($data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
+                      if(isset($data["originalRequest"]["data"]["postback"]["payload"]) && $data["originalRequest"]["data"]["postback"]["payload"] == 'FACEBOOK_LOCATION')
                       {
                         $latlng = $data["originalRequest"]["data"]["postback"]["data"];
                         $data["result"]["parameters"]["ubicacion"][0] = $latlng['lat'].','.$latlng['long'];
