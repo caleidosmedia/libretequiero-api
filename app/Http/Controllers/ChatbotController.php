@@ -10,7 +10,7 @@ use App\Grupo;
 use App\Color;
 use App\Animal;
 
-class DenunciasController extends Controller
+class ChatbotController extends Controller
 {
     public function store(Request $request)
     {
