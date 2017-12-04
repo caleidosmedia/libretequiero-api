@@ -3,7 +3,7 @@
 use App\Animal;
 use Illuminate\Database\Seeder;
 
-class WSCAnimalsTableSeeder extends Seeder
+class WCSAnimalsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
