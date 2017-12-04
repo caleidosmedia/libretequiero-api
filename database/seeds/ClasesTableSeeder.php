@@ -12,9 +12,9 @@ class ClasesTableSeeder extends Seeder
      */
     public function run()
     {
-        Clase::create(['clave' => 'Anfibio','valor' => 'AMPHIBIA']);
-        Clase::create(['clave' => 'Ave','valor' => 'AVES']);
-        Clase::create(['clave' => 'Mamifero','valor' => 'MAMMALIA']);
-        Clase::create(['clave' => 'Reptil','valor' => 'REPTILIA']);
+        Clase::create(['clave' => 'Anfibio', 'valor' => 'AMPHIBIA']);
+        Clase::create(['clave' => 'Ave', 'valor' => 'AVES']);
+        Clase::create(['clave' => 'Mamifero', 'valor' => 'MAMMALIA']);
+        Clase::create(['clave' => 'Reptil', 'valor' => 'REPTILIA']);
     }
 }

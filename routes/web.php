@@ -20,11 +20,8 @@ Route::get('animales/search', 'AnimalsController@search');
 Route::get('animales/{id}', 'AnimalsController@show');
 Route::get('animales-imagenes', 'AnimalsController@images');
 
-
 Route::get('protege/denuncias', 'ProtegeDenunciasController@index');
 Route::post('protege/denunciar', 'ProtegeDenunciasController@store');
-
-
 
 Auth::routes();
 

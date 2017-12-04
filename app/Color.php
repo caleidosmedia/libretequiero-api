@@ -8,6 +8,6 @@ class Color extends Model
 {
     protected $fillable = [
         'clave',
-        'valor'
+        'valor',
     ];
 }

@@ -25,7 +25,7 @@ class CreateDenunciasTable extends Migration
             $table->string('denunciante');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE denuncias ADD imagen LONGBLOB");
+        DB::statement('ALTER TABLE denuncias ADD imagen LONGBLOB');
     }
 
     /**

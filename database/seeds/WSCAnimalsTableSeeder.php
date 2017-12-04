@@ -206,12 +206,11 @@ class WSCAnimalsTableSeeder extends Seeder
         $reptile->grupo = 'tortugas-de-rio';
         $reptile->common_name = 'Taricaya';
         $reptile->save();
-        
+
         // AMPHIBIA
         $amphibia = Animal::where('scientific_name', 'Telmatobius culeus')->first();
         $amphibia->grupo = 'ranas';
         $amphibia->common_name = 'Rana del Titicaca';
         $amphibia->save();
-
     }
 }
