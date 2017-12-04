@@ -8,6 +8,6 @@ class Clase extends Model
 {
     protected $fillable = [
         'clave',
-        'valor'
+        'valor',
     ];
 }

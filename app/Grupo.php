@@ -9,6 +9,6 @@ class Grupo extends Model
     protected $fillable = [
         'clave',
         'valor',
-        'clase_id'
+        'clase_id',
     ];
 }

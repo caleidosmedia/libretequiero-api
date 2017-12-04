@@ -27,7 +27,6 @@ class ChangeColumnsDenunciasTable extends Migration
             $table->string('estado');
             $table->string('grupo');
             $table->string('tipo_locacion');
-
         });
     }
 

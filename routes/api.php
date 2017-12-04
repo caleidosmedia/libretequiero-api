@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +15,6 @@ use Illuminate\Http\Request;
 Route::post('login', 'Api\AuthController@login');
 
 Route::group(['middleware' => ['jwt.auth']], function () {
-	Route::get('denuncias', 'Api\DenunciasController@index');
+    Route::get('denuncias', 'Api\DenunciasController@index');
     Route::post('logout', 'Api\AuthController@logout');
 });
