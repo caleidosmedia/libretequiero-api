@@ -26,4 +26,5 @@ Route::post('protege/denunciar', 'ProtegeDenunciasController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::post('bot', 'ChatbotController@store');
