@@ -14,7 +14,6 @@ class AnimalsController extends Controller
             'kingdom' => 'ANIMALIA',
         ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA']);
 
-
         if (! empty($request->class)) {
             $classes = explode(',', $request->class);
             $animals->whereIn('class', $classes);
