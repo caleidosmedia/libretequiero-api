@@ -14,6 +14,7 @@ class AnimalsController extends Controller
             'kingdom' => 'ANIMALIA',
         ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
         ->where('in_decreto_supremo', '1')
+        ->orderByRaw('case when image_url is null then 1 else 0 end')
         ->orderBy('category')
         ->orderBy('scientific_name');
 
