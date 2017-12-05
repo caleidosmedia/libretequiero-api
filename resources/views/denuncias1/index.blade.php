@@ -22,10 +22,10 @@
             <table id="dataTables-example" class="table table-bordered pases-center data-table">
                 <thead>
                     <tr>
+                        <th>Fecha</th>
                         <th>Clase</th>
                         <th>Grupo</th>
                         <th>Direccion</th>
-                        <th>Fecha</th>
                         <th>Estado</th>
                         <th>Acciones</th>                     
                     </tr>
@@ -33,10 +33,10 @@
                 <tbody>
                     @foreach ($denuncias as $denuncia)
                     <tr>
+                        <td>{{$denuncia->created_at}}</td>
                         <td>{{$denuncia->clase}}</td>
                         <td>{{$denuncia->grupo}}</td>
                         <td>{{$denuncia->direccion}}</td>
-                        <td>{{$denuncia->created_at}}</td>
                         <td>{{$denuncia->estado}}</td>
                     <td>
                         <a href="{{  action('DenunciasController@view', ['id' => $denuncia->id]) }}">Ver</a>

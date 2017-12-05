@@ -8,7 +8,7 @@ class DenunciasController extends Controller
 {
     public function index()
     {
-        $denuncias = Denuncia::all()->sortByDesc('id');
+        $denuncias = Denuncia::all();
         return view('denuncias1.index', compact('denuncias'));
     }
     public function view($id)
