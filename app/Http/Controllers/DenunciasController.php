@@ -16,4 +16,14 @@ class DenunciasController extends Controller
         $denuncia = Denuncia::findOrFail($id);
         return view('denuncias1.view', compact('denuncia'));
     }
+    public function map()
+    {
+        $denuncias = Denuncia::all();
+        foreach ($denuncias as $denuncia) {
+            $coordenadas = explode(',',$denuncia->coordenadas);
+            $locations[]=array( 'id'=>$denuncia->id,'lat'=>$coordenadas[0],'lng'=>$coordenadas[1]);
+        }
+        $markers = json_encode( $locations );
+        return view('denuncias1.map', compact('markers'));
+    }
 }

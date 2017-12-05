@@ -32,4 +32,5 @@ Route::post('bot', 'ChatbotController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('denuncias', 'DenunciasController@index');
     Route::get('denuncias/{id}/ver', 'DenunciasController@view');
+    Route::get('mapa', 'DenunciasController@map');
 });
