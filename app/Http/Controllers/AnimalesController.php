@@ -21,7 +21,7 @@ class AnimalesController extends Controller
     {
         $animales = Animal::whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
             ->whereRaw('(in_decreto_supremo = 1 or grupo IS NOT NULL)')
-            ->sortBy('scientific_name')
+            ->orderBy('scientific_name')
             ->get();
         return view('animales.index', compact('animales'));
     }
