@@ -18,12 +18,15 @@ class AnimalsController extends Controller
         ->orderBy('category')
         ->orderBy('scientific_name');
 
+
         if (! empty($request->class)) {
-            $animals->where('class', $request->class);
+            $classes = explode(',', $request->class);
+            $animals->whereIn('class', $classes);
         }
 
         if (! empty($request->category)) {
-            $animals->where('category', $request->category);
+            $categories = explode(',', $request->category);
+            $animals->whereIn('category', $categories);
         }
 
         if (! empty($request->name)) {
