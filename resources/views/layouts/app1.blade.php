@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ secure_url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -44,9 +44,9 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="{{ secure_url('denuncias') }}">Denuncias</a></li>   
-                                <li><a href="{{ secure_url('mapa') }}">Mapa</a></li>
-                                <li><a href="{{ secure_url('animals') }}">Animales</a></li>
+                                <li><a href="{{ url('denuncias') }}">Denuncias</a></li>   
+                                <li><a href="{{ url('mapa') }}">Mapa</a></li>
+                                <li><a href="{{ url('animals') }}">Animales</a></li>
                             </ul>
                         </li>
                         @endguest
@@ -94,7 +94,7 @@
         $('#dataTables-example').DataTable({
             responsive: true,
             language: {
-                "secure_url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
             }
         });
     });
