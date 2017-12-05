@@ -77,7 +77,7 @@
             @endif
 
             <div class="content">
-                <img src="{{ asset('img/logo_amazonia_blanco.png') }}"/>
+                <img src="{{ secure_asset('img/logo_amazonia_blanco.png') }}"/>
             </div>
         </div>
     </body>
