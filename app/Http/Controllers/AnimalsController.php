@@ -30,8 +30,8 @@ class AnimalsController extends Controller
         }
 
         if (! empty($request->name)) {
-            $animals->where('common_name', 'like', $request->name . '%');
-            $animals->orWhere('scientific_name', 'like', $request->name . '%');
+            $animals->where('common_name', 'like', $request->name.'%');
+            $animals->orWhere('scientific_name', 'like', $request->name.'%');
         }
 
         if (! empty($request->paginate) && $request->paginate == 'false') {

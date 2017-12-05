@@ -28,3 +28,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('bot', 'ChatbotController@store');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('denuncias', 'DenunciasController@index');
+    Route::get('denuncias/{id}/ver', 'DenunciasController@view');
+    Route::get('mapa', 'DenunciasController@map');
+    Route::get('animals', 'AnimalesController@index');
+    Route::get('animals/crear', 'AnimalesController@create');
+    Route::post('animals', 'AnimalesController@store');
+    Route::get('animals/{id}/editar', 'AnimalesController@edit');
+    Route::put('animals/{id}', 'AnimalesController@update');
+});

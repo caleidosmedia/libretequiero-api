@@ -16,5 +16,16 @@ class ClasesTableSeeder extends Seeder
         Clase::create(['clave' => 'Ave', 'valor' => 'AVES']);
         Clase::create(['clave' => 'Mamifero', 'valor' => 'MAMMALIA']);
         Clase::create(['clave' => 'Reptil', 'valor' => 'REPTILIA']);
+        Clase::create(['clave' => '', 'valor' => 'ACTINOPTERYGII']);
+        Clase::create(['clave' => '', 'valor' => 'CEPHALOPODA']);
+        Clase::create(['clave' => '', 'valor' => 'INSECTA']);
+        Clase::create(['clave' => '', 'valor' => 'CHONDRICHTHYES']);
+        Clase::create(['clave' => '', 'valor' => 'BIVALVIA']);
+        Clase::create(['clave' => '', 'valor' => 'GASTROPODA']);
+        Clase::create(['clave' => '', 'valor' => 'MALACOSTRACA']);
+        Clase::create(['clave' => '', 'valor' => 'MAXILLOPODA']);
+        Clase::create(['clave' => '', 'valor' => 'HOLOTHUROIDEA']);
+        Clase::create(['clave' => '', 'valor' => 'MYXINI']);
+        Clase::create(['clave' => '', 'valor' => 'ARACHNIDA']);
     }
 }

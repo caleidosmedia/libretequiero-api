@@ -4,9 +4,10 @@ namespace App\LibreTeQuiero;
 
 use App\Animal;
 
-class WikimediaImageFinder {
-
-    public function find(Animal $animal) {
+class WikimediaImageFinder
+{
+    public function find(Animal $animal)
+    {
         try {
             $url = 'https://es.wikipedia.org/w/api.php?action=query&titles='.rawurlencode($animal->scientific_name).'&prop=images&format=json';
 
@@ -50,5 +51,4 @@ class WikimediaImageFinder {
         } catch (\Exception $e) {
         }
     }
-
 }
