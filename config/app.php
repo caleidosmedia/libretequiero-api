@@ -233,7 +233,7 @@ return [
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,  
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];
