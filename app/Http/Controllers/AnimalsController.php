@@ -12,7 +12,7 @@ class AnimalsController extends Controller
     {
         $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
-        ]);
+        ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA']);
 
 
         if (! empty($request->class)) {
@@ -30,7 +30,7 @@ class AnimalsController extends Controller
             $animals->orWhere('scientific_name', 'like', $request->name.'%');
         }
 
-        $animals->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
+        $animals
         ->whereRaw('(in_decreto_supremo = 1 or grupo IS NOT NULL)')
         ->where('in_decreto_supremo', '1')
         ->orWhereNotNull('grupo')
