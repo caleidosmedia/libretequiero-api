@@ -8,4 +8,5 @@ class Animal extends Model
 {
 	public $timestamps = false;
     protected $guarded = [];
+    public $timestamps = false;
 }

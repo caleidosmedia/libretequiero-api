@@ -13,8 +13,23 @@ class AnimalsController extends Controller
         $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
         ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
+        ->where('in_decreto_supremo', '1')
+        ->orderByRaw('case when image_url is null then 1 else 0 end')
         ->orderBy('category')
-        ->orderBy('image_url', 'desc');
+        ->orderBy('scientific_name');
+
+        if (! empty($request->class)) {
+            $animals->where('class', $request->class);
+        }
+
+        if (! empty($request->category)) {
+            $animals->where('category', $request->category);
+        }
+
+        if (! empty($request->name)) {
+            $animals->where('common_name', 'like', $request->name.'%');
+            $animals->orWhere('scientific_name', 'like', $request->name.'%');
+        }
 
         if (! empty($request->paginate) && $request->paginate == 'false') {
             return $animals->get();

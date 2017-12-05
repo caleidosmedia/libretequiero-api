@@ -30,6 +30,19 @@ Para ejecutar las migraciones y los seeds ejecutar el siguiente comando:
 $ php artisan migrate --seed
 ```
 
+Opcionalmente, se pueden correr seeders para el llenado inical de los animales en peligro de extinción. Esta lista se llena con los datos de [UICN Red List of Threaten Species](http://www.iucnredlist.org/)  y las imagenes se obtienen de [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page). Los datos para el reconocimento de animales se llenan según la guía de la [WCS](https://peru.wcs.org/DesktopModules/Bring2mind/DMX/Download.aspx?EntryId=32151&PortalId=94&DownloadMethod=attachment). Se incluye la clasificación y nombre común de animales según el [Decreto Supremo Nº 004-2014-MINAGRI](http://www.serfor.gob.pe/wp-content/uploads/2017/07/Decreto-Supremo-N_-004-2014-MINAGRI.pdf).
+
+
+En el .env incluir el token de la IUCN en el parametro UICN_TOKEN. Se puede obtener el token [aquí](http://apiv3.iucnredlist.org/api/v3/token).
+
+Ejecutar los siguientes comandos para correr los seeders:
+```sh
+$ php artisan db:seed --class=AnimalsTableSeeder
+$ php artisan db:seed --class=WCSAnimalsTableSeeder
+$ php artisan db:seed --class=DecretoSupremoAnimalsTableSeeder
+```
+
+
 Licencia
 ----
 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
