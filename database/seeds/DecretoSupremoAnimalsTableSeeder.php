@@ -1,8 +1,8 @@
 <?php
 
 use App\Animal;
-use App\LibreTeQuiero\WikimediaImageFinder;
 use Illuminate\Database\Seeder;
+use App\LibreTeQuiero\WikimediaImageFinder;
 
 class DecretoSupremoAnimalsTableSeeder extends Seeder
 {
@@ -98,7 +98,6 @@ class DecretoSupremoAnimalsTableSeeder extends Seeder
         // Sibynomorphus williamsi
         // Liophis problematicus
         // Altigius alios
-
 
         // Categoria CR
 
@@ -663,26 +662,25 @@ class DecretoSupremoAnimalsTableSeeder extends Seeder
         ];
 
         $this->updateAnimals($animals, 'DD');
-
     }
 
-    private function updateAnimals($animals, $category) {
+    private function updateAnimals($animals, $category)
+    {
         foreach ($animals as $dsAnimal) {
             // Encontrar nombre cientifico del animal
             $scientificName = strpos($dsAnimal, '“') ? substr($dsAnimal, 0, strpos($dsAnimal, '“')) : $dsAnimal;
 
             // Encontrar el nombre comun del animal
-            $commonName = strpos($dsAnimal, '“') ? str_replace('”' , '', (str_replace('“', '', substr($dsAnimal, strpos($dsAnimal, '“'))))) : null;
+            $commonName = strpos($dsAnimal, '“') ? str_replace('”', '', (str_replace('“', '', substr($dsAnimal, strpos($dsAnimal, '“'))))) : null;
 
             $animal = Animal::where('scientific_name', $scientificName)->first();
 
-            if(!empty($animal)) {
+            if (! empty($animal)) {
                 $animal->in_decreto_supremo = 1;
                 $animal->common_name = $commonName;
                 $animal->category = $category;
                 $animal->save();
-            }
-            else {
+            } else {
                 try {
                     $client = new GuzzleHttp\Client();
                     $url = 'http://apiv3.iucnredlist.org/api/v3/species/'.rawurlencode($scientificName).'?token='.env('UICN_TOKEN');
@@ -691,8 +689,7 @@ class DecretoSupremoAnimalsTableSeeder extends Seeder
                     $response = $response->getBody();
                     $response = json_decode($response);
 
-                    if(!empty($response->result)) {
-
+                    if (! empty($response->result)) {
                         $animalDetails = $response->result[0];
 
                         $animal = Animal::create([
@@ -716,16 +713,13 @@ class DecretoSupremoAnimalsTableSeeder extends Seeder
 
                         $finder = new WikimediaImageFinder();
                         $finder->find($animal);
-
-                    }
-                    else {
-                        echo $scientificName . "\n";
+                    } else {
+                        echo $scientificName."\n";
                     }
                 } catch (\Exception $e) {
-                    echo $scientificName . "\n";
+                    echo $scientificName."\n";
                 }
-
             }
-        }   
+        }
     }
 }
