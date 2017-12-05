@@ -19,7 +19,10 @@ class AnimalesController extends Controller
 
     public function index()
     {
-        $animales = Animal::all()->sortBy('scientific_name');
+        $animales = Animal::whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
+            ->whereRaw('(in_decreto_supremo = 1 or grupo IS NOT NULL)')
+            ->sortBy('scientific_name')
+            ->get();
         return view('animales.index', compact('animales'));
     }
     public function create()
