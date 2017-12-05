@@ -13,6 +13,7 @@ class AnimalsController extends Controller
         $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
         ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA'])
+        ->where('in_decreto_supremo', '1')
         ->orderBy('category')
         ->orderBy('image_url', 'desc');
 
