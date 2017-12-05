@@ -48,14 +48,28 @@ class AnimalesController extends Controller
     }
     public function edit($id)
     {
-        $vehiculo = Vehiculo::findOrFail($id);
-        $clientes = Role::where('name',Role::CLIENTE_TEXT)->first()->users()->orderBy('email')->get()->mapWithKeys(function ($item) {
-            return [$item['id'] => $item['email']];
+        $animal = Animal::findOrFail($id);
+        $categorias = Categoria::orderBy('valor','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['clave'] => $item['valor']];
         })->toArray();
-        $tipos = Tipo::all()->mapWithKeys(function ($item) {
-            return [$item['id'] => $item['nombre']];
+        $clases = Clase::orderBy('valor','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['valor'] => $item['valor']];
         })->toArray();
-        return view('admin.vehiculos.edit', compact('vehiculo','clientes','tipos'));
+        $ordenes = Orden::orderBy('nombre','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['nombre'] => $item['nombre']];
+        })->toArray();
+        $familias = Familia::orderBy('nombre','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['nombre'] => $item['nombre']];
+        })->toArray();
+        $generos = Genero::orderBy('nombre','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['nombre'] => $item['nombre']];
+        })->toArray();
+        $colores = Color::orderBy('valor','asc')->get()->mapWithKeys(function ($item) {
+            return [$item['clave'] => $item['valor']];
+        })->toArray();
+        for($i=1950;$i<2018;$i++)
+            $years[$i] = $i;
+        return view('animales.edit', compact('animal','categorias','clases','ordenes','familias','generos','years','colores'));
     }
     public function store(Request $request)
     {
@@ -64,8 +78,8 @@ class AnimalesController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $vehiculo = Vehiculo::findOrFail($id);
-        $vehiculo->update($request->all());
-        return redirect("admin/vehiculos");
+        $animal = Animal::findOrFail($id);
+        $animal->update($request->all());
+        return redirect("animals");
     }
 }
