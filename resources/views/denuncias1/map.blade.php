@@ -20,9 +20,9 @@
       var json = {!!$markers!!}
     function initMap() {
 
-        var latlng = new google.maps.LatLng(-12,-77);
+        var latlng = new google.maps.LatLng(-12.046373,-77.042754);
         var myOptions = {
-            zoom: 12,
+            zoom: 13,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false

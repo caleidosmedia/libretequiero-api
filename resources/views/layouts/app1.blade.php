@@ -46,7 +46,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('denuncias') }}">Denuncias</a></li>   
                                 <li><a href="{{ url('mapa') }}">Mapa</a></li>
-                                <li><a href="{{ url('animales') }}">Animales</a></li>
+                                <li><a href="{{ url('animals') }}">Animales</a></li>
                             </ul>
                         </li>
                         @endguest
