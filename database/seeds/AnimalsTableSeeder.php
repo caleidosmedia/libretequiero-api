@@ -1,8 +1,8 @@
 <?php
 
 use App\Animal;
-use App\LibreTeQuiero\WikimediaImageFinder;
 use Illuminate\Database\Seeder;
+use App\LibreTeQuiero\WikimediaImageFinder;
 
 class AnimalsTableSeeder extends Seeder
 {
