@@ -12,11 +12,14 @@ class AnimalsController extends Controller
     {
         $animals = Animal::where([
             'kingdom' => 'ANIMALIA',
-        ])->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA']);
+        ]);
 
         if (! empty($request->class)) {
             $classes = explode(',', $request->class);
             $animals->whereIn('class', $classes);
+        }
+        else {
+            $animals->whereIn('class', ['AMPHIBIA', 'AVES', 'MAMMALIA', 'REPTILIA']);
         }
 
         if (! empty($request->category)) {
@@ -31,8 +34,6 @@ class AnimalsController extends Controller
 
         $animals
         ->whereRaw('(in_decreto_supremo = 1 or grupo IS NOT NULL)')
-        ->where('in_decreto_supremo', '1')
-        ->orWhereNotNull('grupo')
         ->orderByRaw('case when image_url is null then 1 else 0 end')
         ->orderBy('category')
         ->orderBy('scientific_name');
