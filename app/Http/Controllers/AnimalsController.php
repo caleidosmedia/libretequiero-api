@@ -18,6 +18,14 @@ class AnimalsController extends Controller
         ->orderBy('category')
         ->orderBy('scientific_name');
 
+        if (! empty($request->class)) {
+            $animals->where('class', $request->class);
+        }
+
+        if (! empty($request->category)) {
+            $animals->where('category', $request->category);
+        }
+
         if (! empty($request->paginate) && $request->paginate == 'false') {
             return $animals->get();
         } else {
